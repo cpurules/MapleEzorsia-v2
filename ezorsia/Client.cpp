@@ -52,8 +52,10 @@ void Client::UpdateGameStartup() {
 
 	//optional non-resolution related stuff
 	if (useTubi) { Memory::FillBytes(0x00485C32, 0x90, 2); }
-	Memory::FillBytes(0x00936E24, 0x90, 6); // no breath
-	Memory::FillBytes(0x00953707, 0x90, 3); // unlimited attack
+	Memory::FillBytes(0x0092EDC7, 0x90, 10); // no breath full disable (animation and CC/equip/drop blocks)
+	Memory::FillBytes(0x00953707, 0x90, 3); // allow unlimited attack
+	Memory::WriteByte(0x00490607, 0xEB); // allow repeated chats
+	
 	int setDamageCapInt = static_cast<int>(setDamageCap < 0 ? setDamageCap - 0.5 : setDamageCap + 0.5);
 	Memory::WriteInt(0x008C3304 + 1, setDamageCapInt); //ty rain
 
