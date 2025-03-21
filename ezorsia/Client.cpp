@@ -52,7 +52,8 @@ void Client::UpdateGameStartup() {
 
 	//optional non-resolution related stuff
 	if (useTubi) { Memory::FillBytes(0x00485C32, 0x90, 2); }
-	Memory::WriteDouble(0x00AFE8A0, setDamageCap);	//ty rain
+	Memory::FillBytes(0x00936E24, 0x90, 6); // no breath
+	Memory::FillBytes(0x00953707, 0x90, 3); // unlimited attack
 	int setDamageCapInt = static_cast<int>(setDamageCap < 0 ? setDamageCap - 0.5 : setDamageCap + 0.5);
 	Memory::WriteInt(0x008C3304 + 1, setDamageCapInt); //ty rain
 
